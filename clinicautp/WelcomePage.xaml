@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="clinicautp.WelcomePage"
              NavigationPage.HasNavigationBar="False"
-             Title="WelcomePage"
-             BackgroundImageSource="background.jpg">
+             Title="WelcomePage">
+             <!-- BackgroundImageSource="background.jpg"> -->
     <!-- Imagen de fondo para la página -->
 
     <ScrollView>

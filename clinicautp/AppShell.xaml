@@ -15,12 +15,14 @@
     </FlyoutItem>
 
     <!-- Página de Registro (RegisterPage) -->
-    <FlyoutItem Title="Registrarse" Icon="register_icon.png">
+    <!-- <FlyoutItem Title="Registrarse" Icon="register_icon.png"> -->
+    <FlyoutItem Title="Registrarse">
         <ShellContent ContentTemplate="{DataTemplate views:RegisterPage}" />
     </FlyoutItem>
 
     <!-- Página de Inicio de Sesión (LogInPage) -->
-    <FlyoutItem Title="Iniciar Sesión" Icon="login_icon.png">
+    <!-- <FlyoutItem Title="Iniciar Sesión" Icon="login_icon.png"> -->
+    <FlyoutItem Title="Iniciar Sesión">
         <ShellContent ContentTemplate="{DataTemplate views:LogInPage}" />
     </FlyoutItem>
 
