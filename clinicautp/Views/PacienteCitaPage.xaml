@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.PacienteCitaPage"
+             Title="Registrar Cita"
+             BackgroundColor="WhiteSmoke">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Registrar Nueva Cita"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#6A1B9A"
+                   HorizontalOptions="Center" />
+
+            <!-- Fecha de la cita -->
+            <Label Text="Fecha de la Cita" TextColor="#6A1B9A" />
+            <DatePicker Date="{Binding FechaCita, Mode=TwoWay}" />
+
+            <!-- Hora de la cita -->
+            <Label Text="Hora de la Cita" TextColor="#6A1B9A" />
+            <TimePicker Time="{Binding HoraCita, Mode=TwoWay}" />
+
+            <!-- Especialidad -->
+            <Label Text="Especialidad" TextColor="#6A1B9A" />
+            <Picker Title="Seleccione Especialidad"
+                    ItemsSource="{Binding Especialidades}"
+                    SelectedItem="{Binding EspecialidadSeleccionada, Mode=TwoWay}" />
+
+            <!-- Estado de la cita -->
+            <Label Text="Estado de la Cita" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Estado}" Placeholder="Estado de la cita (e.g., Programada)" />
+
+            <!-- Observaciones -->
+            <Label Text="Observaciones" TextColor="#6A1B9A" />
+            <Editor Text="{Binding Observaciones}" 
+                    Placeholder="Ingrese observaciones adicionales" 
+                    HeightRequest="100" />
+
+            <!-- Botón para guardar la cita -->
+            <Button Text="Guardar Cita"
+                    Command="{Binding GuardarCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontSize="18"
+                    Padding="10" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

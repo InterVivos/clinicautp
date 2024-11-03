@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.MainViewPage"
+             xmlns:model="clr-namespace:clinicautp.DTOs"
+             Title="MainViewPage">
+
+    <!-- Diseño principal de la página usando Grid con 3 filas -->
+    <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="15" Margin="15">
+
+        <!-- Botones alineados en la misma fila -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+            <!-- Botón para ir a la página de perfil -->
+            <Button Grid.Column="0" Text="Perfil" Command="{Binding NavegarPerfilCommand}" BackgroundColor="#FF5722" TextColor="White" />
+
+            <!-- Botón para agregar un nuevo historial médico -->
+            <Button Grid.Column="1" Text="Agregar HM" Command="{Binding CrearHistorialCommand}" BackgroundColor="#6A1B9A" TextColor="White" />
+
+            <Button Grid.Column="2" Text="Citas" Command="{Binding IrCitaCommand}" BackgroundColor="#D32F2F" TextColor="White" />
+
+            <!-- Botón para logout -->
+            <Button Grid.Column="3" Text="Logout" Command="{Binding LogOutCommand}" BackgroundColor="#D32F2F" TextColor="White" />
+        </Grid>
+
+        <!-- Etiqueta para el título de la lista de historiales médicos -->
+        <Label Grid.Row="1" Text="Historial Médico" FontSize="Subtitle" TextColor="Green" />
+
+        <!-- Vista de desplazamiento para la lista de historiales médicos -->
+        <ScrollView Grid.Row="2">
+            <!-- Vista de colección para mostrar los historiales médicos -->
+            <CollectionView ItemsSource="{Binding ListaHistorialMedico}">
+
+                <!-- Definición del diseño de los elementos de la colección -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
+                <!-- Plantilla de datos para cada ítem en la colección -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:HistorialMedicoDTO">
+                        <Border Padding="10,5" HorizontalOptions="FillAndExpand" Stroke="#6A1B9A" BackgroundColor="#E0E0E0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="5" />
+                            </Border.StrokeShape>
+
+                            <!-- Diseño de los detalles del historial médico usando Grid -->
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+
+                                <!-- Etiquetas y campos de datos para el historial médico -->
+                                <Label Grid.Row="0" Grid.Column="0" Text="Fecha" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Text="{Binding fecha, StringFormat='{0:MM/dd/yyyy}'}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="Especialidad" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Text="{Binding especialidad}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="2" Grid.Column="0" Text="Detalles" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Text="{Binding detalles}" TextColor="#AB47BC" />
+
+                                <!-- Etiqueta para editar el historial médico -->
+                                <Label Grid.Row="3" Grid.Column="0" Padding="0,15,10,5" Text="Editar" TextColor="Blue">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.EditarHistorialCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <!-- Etiqueta para eliminar el historial médico -->
+                                <Label Grid.Row="3" Grid.Column="1" Padding="10,15,0,5" Text="Eliminar" TextColor="Red" HorizontalOptions="End">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.EliminarHistorialCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.MedicamentoMainPage"
+             xmlns:local="clr-namespace:clinicautp.Views"
+             xmlns:viewmodels="clr-namespace:clinicautp.ViewModels"
+             x:Name="MedicamentoPageContent"
+             Title="Gestión de Medicamentos">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="35" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10">
+
+        <!-- Botones para agregar medicamento y gestionar inventario -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Agregar Medicamento" 
+                    Command="{Binding AgregarMedicamentoCommand}" />
+        </StackLayout>
+
+        <Label Text="Lista de Medicamentos Registrados" 
+               FontSize="18" 
+               HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding ListaMedicamentos}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" ColumnSpacing="10" VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Mostrar el nombre del medicamento -->
+                            <Label Text="{Binding Nombre}" VerticalOptions="Center" Grid.Column="0" />
+
+                            <!-- Botón para actualizar medicamento -->
+                            <Button Text="Actualizar"
+                                    Command="{Binding Path=BindingContext.ActualizarMedicamentoCommand, Source={x:Reference MedicamentoPageContent}}"
+                                    CommandParameter="{Binding CodMedicamento}"
+                                    Grid.Column="1" />
+
+                            <!-- Botón para eliminar medicamento -->
+                            <Button Text="Eliminar"
+                                    Command="{Binding Path=BindingContext.EliminarMedicamentoCommand, Source={x:Reference MedicamentoPageContent}}"
+                                    CommandParameter="{Binding CodMedicamento}"
+                                    Grid.Column="2" />
+
+                            <!-- Botón para ver detalles del medicamento -->
+                            <Button Text="Detalles"
+                                    Command="{Binding Path=BindingContext.VerDetalleMedicamentoCommand, Source={x:Reference MedicamentoPageContent}}"
+                                    CommandParameter="{Binding CodMedicamento}"
+                                    Grid.Column="3" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

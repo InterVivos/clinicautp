@@ -1,0 +1,8 @@
+
+clinicautp/bin/
+
+*.tmp
+
+.vs/
+.vscode/
+

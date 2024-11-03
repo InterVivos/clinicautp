@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.WelcomePage"
+             NavigationPage.HasNavigationBar="False"
+             Title="WelcomePage"
+             BackgroundImageSource="background.jpg">
+    <!-- Imagen de fondo para la página -->
+
+    <ScrollView>
+        <VerticalStackLayout 
+            Padding="30,20"
+            Spacing="30"
+            VerticalOptions="Center"
+            BackgroundColor="WhiteSmoke"
+            Opacity="0.95">
+            <!-- Controla la opacidad para un efecto translúcido -->
+
+            <!-- Label para el título principal con diseño -->
+            <Label
+                Text="-CLÍNICA UTP-"
+                FontAttributes="Bold"
+                FontSize="36"
+                TextColor="BlueViolet"
+                HorizontalOptions="Center" />
+
+                <!-- Frame para contener la imagen con bordes redondeados -->
+                <Frame CornerRadius="20" Padding="0" HasShadow="True" BorderColor="LightGray">
+                    <Image
+                    Source="logoutp.jpg"
+                    HeightRequest="300"
+                    Aspect="AspectFill"/>
+                </Frame>
+
+                <!-- Label para el mensaje de bienvenida con diseño -->
+                <Label
+                Text="¡Es un placer darle la bienvenida a nuestra clínica universitaria! Estamos aquí para ofrecerle la mejor atención posible."
+                FontAttributes="Bold"
+                FontSize="18"
+                TextColor="DarkSlateBlue"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
+
+                <!-- Botón para continuar -->
+                <Button
+                x:Name="CounterBtn"
+                Text="Continuar"
+                TextColor="White"
+                BackgroundColor="#4CAF50"
+                FontSize="18"
+                CornerRadius="20"
+                HeightRequest="50"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Clicked="OnCounterClicked"
+                VerticalOptions="End" />
+                
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

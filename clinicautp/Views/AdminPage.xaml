@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.AdminPage"
+             xmlns:local="clr-namespace:clinicautp.Views"
+             xmlns:viewmodels="clr-namespace:clinicautp.ViewModels"
+             x:Name="AdminPageContent"
+             Title="AdminPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="35" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10">
+
+        <!-- Botones para agregar paciente y navegar a Personal Médico -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Agregar Paciente" 
+                    Command="{Binding AgregarPacienteNuevoCommand}" />
+            <Button Text="Personal Médico" 
+                    Command="{Binding NavegarPersonalMedicoCommand}" />
+            <Button Text="Medicamentos" 
+        Command="{Binding NavegarMedicamentosCommand}" />
+
+        </StackLayout>
+
+        <Label Text="Cédulas de Pacientes Registrados" 
+               FontSize="18" 
+               HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding ListaCedulasPacientes}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" ColumnSpacing="10" VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Mostrar la cédula del paciente -->
+                            <Label Text="{Binding .}" VerticalOptions="Center" Grid.Column="0" />
+
+                            <!-- Botón para actualizar paciente -->
+                            <Button Text="Actualizar"
+                                    Command="{Binding Path=BindingContext.ActualizarPacienteCommand, Source={x:Reference AdminPageContent}}"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Column="1" />
+
+                            <!-- Botón para eliminar paciente -->
+                            <Button Text="Eliminar"
+                                    Command="{Binding Path=BindingContext.EliminarPacienteCommand, Source={x:Reference AdminPageContent}}"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Column="2" />
+
+                            <!-- Botón para ver historial médico -->
+                            <Button Text="Ver Historial"
+                                    Command="{Binding Path=BindingContext.VerHistorialMedicoCommand, Source={x:Reference AdminPageContent}}"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Column="3" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

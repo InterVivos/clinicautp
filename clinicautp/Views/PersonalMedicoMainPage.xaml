@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.PersonalMedicoMainPage"
+             Title="Personal Médico">
+
+    <StackLayout Padding="10">
+
+        <Label Text="Lista de Personal Médico"
+               FontSize="24"
+               HorizontalOptions="Center"
+               Margin="0,20,0,10"/>
+
+        <ListView ItemsSource="{Binding ListaPersonalMedico}"
+                  HasUnevenRows="True"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedPersonalMedico, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Nombre}" FontSize="18"/>
+                            <Label Text="{Binding Apellido}" FontSize="16"/>
+                            <Label Text="{Binding Especialidad}" FontSize="14" TextColor="Gray"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Ir al Perfil"
+                Command="{Binding NavegarPerfilCommand}"
+                CommandParameter="{Binding SelectedPersonalMedico.Cedula}" 
+                IsEnabled="{Binding SelectedPersonalMedico, Converter={StaticResource NullToBoolConverter}}"/>
+
+        <!-- Botón para navegar a la página de Horario Médico -->
+        <Button Text="Agregar Horario Médico"
+                Command="{Binding NavegarHorarioMedicoCommand}" />
+
+        <Button Text="Ir a crear Pdf"
+                Command="{Binding NavegarCrearPDFCommand}"
+                />
+
+        <Button Text="Cerrar Sesión"
+                Command="{Binding LogOutCommand}"
+                BackgroundColor="Red"
+                TextColor="White"
+                VerticalOptions="EndAndExpand"/>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.HistorialMedicoPage"
+             Title="HistorialMedicoPage">
+    <!-- Diseño principal de la página usando VerticalStackLayout -->
+    <VerticalStackLayout Padding="15">
+
+        <!-- Etiqueta y campo de entrada para la Fecha del historial médico -->
+        <Label Text="Fecha" TextColor="#6A1B9A"></Label>
+        <DatePicker Date="{Binding Fecha, Mode=TwoWay}" Margin="0,0,0,10"/>
+
+        <!-- Etiqueta y campo de entrada para la Descripción -->
+        <Label Text="Especialidad" TextColor="#6A1B9A"></Label>
+        <Entry Text="{Binding Especialidad}" Margin="0,0,0,10"></Entry>
+
+        <!-- Etiqueta y campo de entrada para el Tratamiento -->
+        <Label Text="Detalles" TextColor="#6A1B9A"></Label>
+        <Entry Text="{Binding Detalles}" Margin="0,0,0,10"></Entry>
+
+        <!-- Botón para guardar el historial médico, enlazado al comando GuardarCommand en el ViewModel -->
+        <Button Text="Guardar" Command="{Binding GuardarCommand}" BackgroundColor="Green" />
+
+    </VerticalStackLayout>
+</ContentPage>

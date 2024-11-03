@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.CitaMainViewPage"
+             xmlns:model="clr-namespace:clinicautp.DTOs"
+             Title="Citas">
+
+    <!-- Diseño principal de la página usando Grid con 3 filas -->
+    <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="15" Margin="15">
+
+        <!-- Botones alineados en la misma fila -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,*" ColumnSpacing="10">
+            <!-- Botón para agregar una nueva cita -->
+            <Button Grid.Column="0" Text="Agregar Cita" Command="{Binding CrearCitaCommand}" BackgroundColor="#6A1B9A" TextColor="White" />
+
+            <!-- Botón para logout -->
+            <Button Grid.Column="1" Text="Logout" Command="{Binding LogOutCommand}" BackgroundColor="#D32F2F" TextColor="White" />
+        </Grid>
+
+        <!-- Etiqueta para el título de la lista de citas -->
+        <Label Grid.Row="1" Text="Citas" FontSize="Subtitle" TextColor="Green" />
+
+        <!-- Vista de desplazamiento para la lista de citas -->
+        <ScrollView Grid.Row="2">
+            <!-- Vista de colección para mostrar las citas -->
+            <CollectionView ItemsSource="{Binding ListaCitas}">
+
+                <!-- Definición del diseño de los elementos de la colección -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
+                <!-- Plantilla de datos para cada ítem en la colección -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:CitaDTO">
+                        <Border Padding="10,5" HorizontalOptions="FillAndExpand" Stroke="#6A1B9A" BackgroundColor="#E0E0E0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="5" />
+                            </Border.StrokeShape>
+
+                            <!-- Diseño de los detalles de la cita usando Grid -->
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+
+                                <!-- Etiquetas y campos de datos para la cita -->
+                                <Label Grid.Row="0" Grid.Column="0" Text="Fecha" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Text="{Binding FechaCita, StringFormat='{0:MM/dd/yyyy}'}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="Hora" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Text="{Binding HoraCita, StringFormat='{0:hh\\:mm}'}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="2" Grid.Column="0" Text="Especialidad" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Text="{Binding Especialidad}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="3" Grid.Column="0" Text="Observaciones" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="End" Text="{Binding Observaciones}" TextColor="#AB47BC" />
+
+                                <!-- Etiqueta para editar la cita -->
+                                <Label Grid.Row="4" Grid.Column="0" Padding="0,15,10,5" Text="Editar" TextColor="Blue">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.EditarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <!-- Etiqueta para eliminar la cita -->
+                                <Label Grid.Row="4" Grid.Column="1" Padding="10,15,0,5" Text="Eliminar" TextColor="Red" HorizontalOptions="End">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.EliminarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.AdminPersonalMedicoMainPage"
+             xmlns:local="clr-namespace:clinicautp.Views"
+             xmlns:viewmodels="clr-namespace:clinicautp.ViewModels"
+             x:Name="AdminPersonalMedicoMainPageContent"
+             Title="Administrar Personal Médico">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="35" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10">
+
+        <!-- Botón para agregar personal médico -->
+        <Button Text="Agregar Personal Médico" 
+                Command="{Binding AgregarPersonalMCommand}" 
+                HorizontalOptions="Center" />
+
+        <Label Text="Cédulas de Personal Médico Registrados" 
+               FontSize="18" 
+               HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding ListaCedulasPersonalMedico}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" ColumnSpacing="10" VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <!-- Para la cédula -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Para el botón de actualizar -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Para el botón de eliminar -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Mostrar la cédula del personal médico -->
+                            <Label Text="{Binding .}" VerticalOptions="Center" Grid.Column="0" />
+
+                            <!-- Botón para actualizar datos del personal médico -->
+                            <Button Text="Actualizar"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ListView}}, Path=BindingContext.ActualizarPersonalMCommand}"
+                                CommandParameter="{Binding .}"
+                                Grid.Column="1" />
+
+                            <!-- Botón para eliminar el personal médico -->
+                            <Button Text="Eliminar"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ListView}}, Path=BindingContext.EliminarPersonalMCommand}"
+                                CommandParameter="{Binding .}"
+                                Grid.Column="2" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

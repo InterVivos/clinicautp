@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.PersonalMedicoProfilePage"
+             Title="Perfil"
+             BackgroundColor="WhiteSmoke">
+
+    <!-- Contenido dentro de ScrollView para permitir el desplazamiento -->
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Editar Perfil" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   TextColor="#6A1B9A"
+                   HorizontalOptions="Center" />
+
+            <!-- Campo de entrada para la Contraseña -->
+            <Label Text="Contraseña" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Contrasena}" IsPassword="True" Placeholder="Ingrese su contraseña" />
+
+            <!-- Campo de entrada para el Nombre -->
+            <Label Text="Nombre" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Nombre}" Placeholder="Ingrese su nombre" />
+
+            <!-- Campo de entrada para el Apellido -->
+            <Label Text="Apellido" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Apellido}" Placeholder="Ingrese su apellido" />
+
+            <!-- Campo de entrada para el Cargo -->
+            <Label Text="Cargo" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Cargo}" Placeholder="Ingrese su cargo" />
+
+            <!-- Campo de entrada para la Especialidad -->
+            <Label Text="Especialidad" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Especialidad}" Placeholder="Ingrese su especialidad" />
+
+            <!-- Campo de entrada para el Correo -->
+            <Label Text="Correo" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Correo}" Placeholder="Ingrese su correo" Keyboard="Email" />
+
+            <!-- Campo de entrada para el Teléfono -->
+            <Label Text="Teléfono" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Telefono}" Placeholder="Ingrese su teléfono" Keyboard="Telephone" />
+
+            <!-- Botón para guardar los datos -->
+            <Button Text="Guardar" 
+                    Command="{Binding ActualizarDatosCommand}" 
+                    BackgroundColor="#4CAF50" 
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontSize="18"
+                    Padding="10"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

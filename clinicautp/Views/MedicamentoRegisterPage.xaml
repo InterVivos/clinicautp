@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.MedicamentoRegisterPage"
+             Title="Registrar Medicamento"
+             BackgroundColor="WhiteSmoke">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Registrar Nuevo Medicamento"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#6A1B9A"
+                   HorizontalOptions="Center" />
+
+            <!-- Código del Medicamento -->
+            <Label Text="Código del Medicamento" TextColor="#6A1B9A" />
+            <Entry Text="{Binding CodMedicamento}" Placeholder="Ingrese el código del medicamento" />
+
+            <!-- Nombre del Medicamento -->
+            <Label Text="Nombre" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Nombre}" Placeholder="Ingrese el nombre del medicamento" />
+
+            <!-- Dosis -->
+            <Label Text="Dosis" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Dosis}" Placeholder="Ingrese la dosis" />
+
+            <!-- Fecha de Vencimiento -->
+            <Label Text="Fecha de Vencimiento" TextColor="#6A1B9A" />
+            <DatePicker Date="{Binding FechaVencimiento}" />
+
+            <!-- Indicaciones -->
+            <Label Text="Indicaciones" TextColor="#6A1B9A" />
+            <Editor Text="{Binding Indicaciones}" Placeholder="Ingrese las indicaciones" HeightRequest="100" />
+
+            <!-- Cantidad Disponible -->
+            <Label Text="Cantidad Disponible" TextColor="#6A1B9A" />
+            <Entry Text="{Binding CantidadDisponible}" Placeholder="Ingrese la cantidad disponible" Keyboard="Numeric" />
+
+            <!-- Cantidad Mínima -->
+            <Label Text="Cantidad Mínima" TextColor="#6A1B9A" />
+            <Entry Text="{Binding CantidadMinima}" Placeholder="Ingrese la cantidad mínima" Keyboard="Numeric" />
+
+            <!-- Botón para guardar el medicamento -->
+            <Button Text="Guardar Medicamento"
+                    Command="{Binding AgregarMedicamentoCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontSize="18"
+                    Padding="10" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

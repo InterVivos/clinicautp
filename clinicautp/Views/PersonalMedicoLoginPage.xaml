@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.PersonalMedicoLoginPage"
+             xmlns:vm="clr-namespace:clinicautp.ViewModels"
+             x:DataType="vm:PersonalMedicoLoginViewModel"
+             Title="Iniciar Sesión - Personal Médico"
+             BackgroundColor="WhiteSmoke">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="CenterAndExpand">
+
+            <!-- Título de la página -->
+            <Label 
+                Text="Iniciar Sesión - Personal Médico"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="DarkSlateBlue"
+                HorizontalOptions="Center" />
+
+            <!-- Campo de Cédula -->
+            <Frame
+                CornerRadius="5"
+                HasShadow="True"
+                BackgroundColor="White"
+                Padding="0"
+                Margin="0,10">
+                <VerticalStackLayout Padding="10">
+                    <Entry
+                        Placeholder="Cédula"
+                        Text="{Binding Cedula}"
+                        BackgroundColor="Transparent" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Campo de Contraseña -->
+            <Frame
+                CornerRadius="5"
+                HasShadow="True"
+                BackgroundColor="White"
+                Padding="0"
+                Margin="0,10">
+                <VerticalStackLayout Padding="10">
+                    <Entry
+                        Placeholder="Contraseña"
+                        Text="{Binding Contrasena}"
+                        IsPassword="True"
+                        BackgroundColor="Transparent" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Botón de Iniciar Sesión -->
+            <Button
+                Text="Iniciar Sesión"
+                Command="{Binding LoginCommand}"
+                BackgroundColor="RoyalBlue"
+                TextColor="White"
+                CornerRadius="5"
+                Padding="15"
+                Margin="0,10"
+                HorizontalOptions="FillAndExpand"
+                FontSize="18" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

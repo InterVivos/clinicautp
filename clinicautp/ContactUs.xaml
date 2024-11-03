@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.ContactUs"
+             Title="Contáctenos"
+             BackgroundColor="WhiteSmoke">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20"
+            VerticalOptions="StartAndExpand">
+
+            <!-- Marco para mostrar la dirección -->
+            <Frame CornerRadius="15" Padding="10" BorderColor="LightGray" BackgroundColor="White" HasShadow="True">
+                <StackLayout>
+                    <Label 
+                        Text="Dirección"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="Purple"
+                        HorizontalOptions="Center" />
+                    <Label 
+                        Text="Universidad Tecnológica de Panamá, Avenida Ricardo J. Alfaro, Campus Metropolitano Dr. Víctor Levi Sasso, Edificio Administrativo."
+                        FontSize="16"
+                        TextColor="Gray"
+                        HorizontalOptions="Center" 
+                        HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Marco para mostrar el correo -->
+            <Frame CornerRadius="15" Padding="10" BorderColor="LightGray" BackgroundColor="White" HasShadow="True">
+                <StackLayout>
+                    <Label 
+                        Text="Correo"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="Purple"
+                        HorizontalOptions="Center" />
+                    <Label 
+                        Text="clinica.universitaria@utp.ac.pa"
+                        FontSize="16"
+                        TextColor="Gray"
+                        HorizontalOptions="Center" 
+                        HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Marco para mostrar el horario -->
+            <Frame CornerRadius="15" Padding="10" BorderColor="LightGray" BackgroundColor="White" HasShadow="True">
+                <StackLayout>
+                    <Label 
+                        Text="Horario"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="Purple"
+                        HorizontalOptions="Center" />
+                    <Label 
+                        Text="Lunes a viernes 8:00 a. m. a 4:00 p. m."
+                        FontSize="16"
+                        TextColor="Gray"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Marco para mostrar el teléfono -->
+            <Frame CornerRadius="15" Padding="10" BorderColor="LightGray" BackgroundColor="White" HasShadow="True">
+                <StackLayout>
+                    <Label 
+                        Text="Teléfono"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="Purple"
+                        HorizontalOptions="Center" />
+                    <Label 
+                        Text="(507) 560-3205/3169"
+                        FontSize="16"
+                        TextColor="Gray"
+                        HorizontalOptions="Center" 
+                        HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

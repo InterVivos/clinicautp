@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.AdminRegisterPacientePage"
+             Title="Registrar Paciente"
+             BackgroundColor="WhiteSmoke">
+
+    <!-- Contenido dentro de ScrollView para permitir el desplazamiento -->
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Registrar Nuevo Paciente" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   TextColor="#6A1B9A"
+                   HorizontalOptions="Center" />
+
+            <!-- Campo de entrada para la Contraseña -->
+            <Label Text="Contraseña" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Contrasena}" IsPassword="True" Placeholder="Ingrese la contraseña" />
+
+            <!-- Campo de entrada para la Cédula -->
+            <Label Text="Cédula" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Cedula}" Placeholder="Ingrese la cédula" />
+
+            <!-- Campo de entrada para el Nombre -->
+            <Label Text="Nombre" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Nombre}" Placeholder="Ingrese el nombre" />
+
+            <!-- Campo de entrada para el Apellido -->
+            <Label Text="Apellido" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Apellido}" Placeholder="Ingrese el apellido" />
+
+            <!-- Campo de entrada para la Fecha de Nacimiento -->
+            <Label Text="Fecha de Nacimiento" TextColor="#6A1B9A" />
+            <DatePicker Date="{Binding FechaNacimiento, Mode=TwoWay}" />
+
+            <!-- Campo de entrada para el Tipo de Sangre -->
+            <Label Text="Tipo de Sangre" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Sangre}" Placeholder="Ingrese el tipo de sangre" />
+
+            <!-- Campo de entrada para el Correo -->
+            <Label Text="Correo" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Correo}" Placeholder="Ingrese el correo" Keyboard="Email" />
+
+            <!-- Botón para agregar el paciente -->
+            <Button Text="Agregar Paciente" 
+                    Command="{Binding AgregarPacienteCommand}" 
+                    BackgroundColor="#4CAF50" 
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontSize="18"
+                    Padding="10"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

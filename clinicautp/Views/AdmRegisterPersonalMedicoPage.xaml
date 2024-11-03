@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.AdmRegisterPersonalMedicoPage"
+             Title="Registrar Personal Médico"
+             BackgroundColor="WhiteSmoke">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Registrar Nuevo Personal Médico"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#6A1B9A"
+                   HorizontalOptions="Center" />
+
+            <!-- Cédula -->
+            <Label Text="Cédula" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Cedula}" Placeholder="Ingrese la cédula" />
+
+            <!-- Contraseña -->
+            <Label Text="Contraseña" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Contrasena}" 
+                   Placeholder="Ingrese la contraseña" 
+                   IsPassword="True" />
+
+            <!-- Cargo -->
+            <Label Text="Cargo" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Cargo}" Placeholder="Ingrese el cargo" />
+
+            <!-- Especialidad -->
+            <Label Text="Especialidad" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Especialidad}" Placeholder="Ingrese la especialidad" />
+
+            <!-- Nombre -->
+            <Label Text="Nombre" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Nombre}" Placeholder="Ingrese el nombre" />
+
+            <!-- Apellido -->
+            <Label Text="Apellido" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Apellido}" Placeholder="Ingrese el apellido" />
+
+            <!-- Correo -->
+            <Label Text="Correo" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Correo}" Placeholder="Ingrese el correo" />
+
+            <!-- Teléfono -->
+            <Label Text="Teléfono" TextColor="#6A1B9A" />
+            <Entry Text="{Binding Telefono}" Placeholder="Ingrese el teléfono" />
+
+            <!-- Botón para guardar el personal médico -->
+            <Button Text="Guardar Personal Médico"
+                    Command="{Binding AgregarPersonalMedicoCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontSize="18"
+                    Padding="10" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

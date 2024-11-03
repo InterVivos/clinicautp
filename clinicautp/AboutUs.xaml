@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.AboutUs"
+             Title="Sobre Nosotros"
+             BackgroundColor="WhiteSmoke">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Título principal de la página -->
+            <Label 
+                Text="La Clínica Universitaria UTP"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="DarkSlateBlue"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+            <!-- Descripción de la clínica -->
+            <Label 
+                Text="La Clínica Universitaria brinda servicios de salud y lleva a cabo actividades clínicas y de capacitación en temas de salud, dirigidas a la población estudiantil, docente, administrativa y de investigación de la Universidad."
+                FontSize="16"
+                TextColor="DimGray"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Padding="10"
+                LineBreakMode="WordWrap"/>
+
+            <!-- Sección de objetivos -->
+            <Frame CornerRadius="10" Padding="10" BorderColor="LightGray" BackgroundColor="White" HasShadow="True">
+                <StackLayout>
+                    <Label 
+                        Text="Objetivos"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="Purple"
+                        HorizontalOptions="Center" />
+
+                    <Label 
+                        Text="- Proporcionar al paciente servicios de atención integral para su salud, en lo concerniente a prevención, tratamiento y rehabilitación de enfermedades."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+
+                    <Label 
+                        Text="- Desarrollar actividades inherentes a la promoción de la salud de la comunidad universitaria."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Sección de funciones -->
+            <Frame CornerRadius="10" Padding="10" BorderColor="LightGray" BackgroundColor="White" HasShadow="True">
+                <StackLayout>
+                    <Label 
+                        Text="Funciones"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="Purple"
+                        HorizontalOptions="Center" />
+
+                    <Label 
+                        Text="- Asistir con atención médica a los estudiantes, docentes, investigadores y personal administrativo de la Universidad."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+
+                    <Label 
+                        Text="- Orientar a pacientes acerca de su enfermedad, tratamiento, medicamento y efectos secundarios."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+
+                    <Label 
+                        Text="- Dar atención primaria (preventiva) en salud e higiene a través de acciones de capacitación sobre diferentes patologías infectocontagiosas u otras enfermedades."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+
+                    <Label 
+                        Text="- Realizar un plan anual de trabajo para desarrollar mejores niveles de atención en la clínica."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+
+                    <Label 
+                        Text="- Referir los pacientes que lo ameriten, según sea el caso, a análisis clínicos, de laboratorio y a otros especialistas."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+
+                    <Label 
+                        Text="- Coordinar con la Dirección de Orientación Psicológica para establecer referencias para la atención psicológica de usuarios de la clínica."
+                        FontSize="16"
+                        TextColor="Green"
+                        LineBreakMode="WordWrap"/>
+                </StackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

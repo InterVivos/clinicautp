@@ -1,0 +1,35 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.HorarioMedicoPage1"
+             Title="Asignar Horario">
+    <StackLayout Padding="10">
+        <!-- Selección de médico -->
+        <Picker ItemsSource="{Binding PersonalMedicoList}"
+                ItemDisplayBinding="{Binding Nombre}"
+                SelectedItem="{Binding MedicoSeleccionado}"
+                Title="Selecciona un médico" />
+
+        <!-- Selección de fecha -->
+        <DatePicker Date="{Binding Fecha}" />
+
+        <!-- Selección de hora de inicio -->
+        <TimePicker Time="{Binding HoraInicio}" />
+
+        <!-- Selección de hora de fin -->
+        <TimePicker Time="{Binding HoraFin}" />
+
+        <!-- Botón para asignar horario -->
+        <Button Text="Asignar Horario"
+                Command="{Binding AsignarHorarioCommand}" />
+
+        <!-- Lista de horarios asignados -->
+        <ListView ItemsSource="{Binding Horarios}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Fecha}"
+                              Detail="{Binding HoraInicio}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="clinicautp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:clinicautp"
+    xmlns:views="clr-namespace:clinicautp.Views"
+    xmlns:ses="clr-namespace:clinicautp.ViewModels"
+    Shell.FlyoutBehavior="Flyout"
+    Title="clinicautp">
+
+    <!-- Página de Inicio -->
+    <FlyoutItem Title="Inicio">
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+    </FlyoutItem>
+
+    <!-- Página de Registro (RegisterPage) -->
+    <FlyoutItem Title="Registrarse" Icon="register_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:RegisterPage}" />
+    </FlyoutItem>
+
+    <!-- Página de Inicio de Sesión (LogInPage) -->
+    <FlyoutItem Title="Iniciar Sesión" Icon="login_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:LogInPage}" />
+    </FlyoutItem>
+
+    <!-- Página de inicio de sesión para el personal médico -->
+    <FlyoutItem Title="Personal Médico" Icon="profile.png">
+        <ShellContent ContentTemplate="{DataTemplate views:PersonalMedicoLoginPage}" />
+    </FlyoutItem>
+
+    <!-- Página Sobre nosotros -->
+    <FlyoutItem Title="Sobre nosotros">
+        <ShellContent ContentTemplate="{DataTemplate local:AboutUs}" />
+    </FlyoutItem>
+
+    <!-- Página Contáctenos -->
+    <FlyoutItem Title="Contáctenos" Icon="profile.png">
+        <ShellContent ContentTemplate="{DataTemplate local:ContactUs}" />
+    </FlyoutItem>
+
+
+</Shell>

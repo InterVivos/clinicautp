@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:clinicautp"
+             x:Class="clinicautp.MainPage"
+             BackgroundColor="#F3F4F6">
+    <!-- Fondo claro para la página -->
+
+    <ScrollView>
+        <VerticalStackLayout 
+            Padding="30,0"
+            Spacing="25"
+            VerticalOptions="Center">
+            <!-- Centrado verticalmente -->
+
+            <!-- Label para el título principal -->
+            <Label
+                Text="-CLÍNICA UTP-"
+                FontAttributes="Bold"
+                FontSize="32"
+                TextColor="BlueViolet"
+                HorizontalOptions="Center" />
+
+            <!-- Label para el mensaje de bienvenida -->
+            <Label
+                Text="En la barra lateral podrá encontrar información sobre nosotros. A continuación podrá registrarse e iniciar sesión!"
+                FontAttributes="Bold"
+                FontSize="18"
+                TextColor="DarkSlateBlue"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center" />
+
+            <!-- Botón para el registro con evento -->
+            <Button
+                x:Name="Register"
+                Text="Registro"
+                FontSize="18"
+                TextColor="White"
+                BackgroundColor="#4CAF50"
+                CornerRadius="20"
+                HeightRequest="50"
+                HorizontalOptions="Fill"
+                Clicked="OnRegisterButtonClicked"/>
+
+            <!-- Botón para login con evento -->
+            <Button
+                x:Name="LogIn"
+                Text="LogIn"
+                FontSize="18"
+                TextColor="White"
+                BackgroundColor="#2196F3"
+                CornerRadius="20"
+                HeightRequest="50"
+                HorizontalOptions="Fill"
+                Clicked="OnLoginButtonClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
