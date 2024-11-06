@@ -23,11 +23,11 @@ public partial class ReferenciaEspecialidadViewModel : ObservableObject
             var pdfGenerator = new PdfGenerator();
             await pdfGenerator.CrearPDFReferenciaEspecialidadAsync(Referencias);
 
-            await Application.Current.MainPage.DisplayAlert("Éxito", "El PDF de referencias se ha generado exitosamente.", "OK");
+            //await Application.Current.MainPage.DisplayAlert("Éxito", "El PDF de referencias se ha generado exitosamente.", "OK");
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo generar el PDF: {ex.Message}", "OK");
+            await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo generar el PDF: {ex.ToString()}", "OK");
         }
     }
 }

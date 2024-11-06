@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using clinicautp.DataAccess;
 using clinicautp.ViewModels;
 using clinicautp.Views;
+using CommunityToolkit.Maui;
 
 namespace clinicautp
 {
@@ -13,6 +14,7 @@ namespace clinicautp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -86,6 +88,7 @@ namespace clinicautp
             Routing.RegisterRoute(nameof(PersonalMedicoProfilePage), typeof(PersonalMedicoProfilePage));
             Routing.RegisterRoute(nameof(MedicamentoMainPage), typeof(MedicamentoMainPage));
             Routing.RegisterRoute(nameof(LogInPage), typeof(LogInPage));
+            Routing.RegisterRoute(nameof(PersonalMedicoLoginPage), typeof(PersonalMedicoLoginPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
             Routing.RegisterRoute(nameof(MedicamentoRegisterPage), typeof(MedicamentoRegisterPage));
             Routing.RegisterRoute(nameof(MedicamentoActualizarPage), typeof(MedicamentoActualizarPage));

@@ -40,7 +40,7 @@ namespace clinicautp.ViewModels
                 AppState.Instance.CedulaPersonalMedico = null; // Limpiar la cédula del personal médico
 
                 // Redirigir al usuario a la página de login
-                await Shell.Current.GoToAsync("//PersonalMedicoLoginPage");
+                await Shell.Current.Navigation.PopAsync();
             }
             catch (Exception ex)
             {

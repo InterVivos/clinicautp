@@ -28,10 +28,10 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Ir al Perfil"
+        <!-- <Button Text="Ir al Perfil"
                 Command="{Binding NavegarPerfilCommand}"
                 CommandParameter="{Binding SelectedPersonalMedico.Cedula}" 
-                IsEnabled="{Binding SelectedPersonalMedico, Converter={StaticResource NullToBoolConverter}}"/>
+                IsEnabled="{Binding SelectedPersonalMedico, Converter={StaticResource NullToBoolConverter}}"/> -->
 
         <!-- Botón para navegar a la página de Horario Médico -->
         <Button Text="Agregar Horario Médico"

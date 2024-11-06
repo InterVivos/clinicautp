@@ -101,9 +101,8 @@ namespace clinicautp.ViewModels
         {
             try
             {
-
-
-                await Shell.Current.GoToAsync("LogInPage");
+                //await Shell.Current.GoToAsync("LogInPage");
+                await Shell.Current.Navigation.PopAsync();
             }
             catch (Exception ex)
             {
