@@ -10,6 +10,17 @@ public partial class PersonalMedicoMainPage : ContentPage
 	public PersonalMedicoMainPage(PersonalMedicoMainViewModel viewModel)
 	{
 		InitializeComponent();
+
+		MessagingCenter.Subscribe<HistorialMedicoViewModel, Cita>(this, "CitaCompletada", async (obj, cita) =>
+        {
+            //var citaCompletada = cita as CitaDTO;
+
+            //DisplayAlert("Alert", "call back value is : " + cita.Id, "OK");
+			//viewModel.ListaCitas.Remove(viewModel.ListaCitas.Where(c => c.Estado == "Completada").Single());
+			await viewModel.ObtenerCitas();
+
+        });
+
         BindingContext = viewModel;
     }
 

@@ -6,7 +6,7 @@
              Title="MainViewPage">
 
     <!-- Diseño principal de la página usando Grid con 3 filas -->
-    <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="15" Margin="15">
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="15" Margin="15">
 
         <!-- Botones alineados en la misma fila -->
         <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="10">

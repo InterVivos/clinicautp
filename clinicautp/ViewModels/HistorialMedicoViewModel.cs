@@ -92,6 +92,8 @@ namespace clinicautp.ViewModels
 
                 await _dbContext.SaveChangesAsync();
 
+                MessagingCenter.Send(this, "CitaCompletada", citaSel);
+
                 await Shell.Current.Navigation.PopAsync();
             }
             catch (Exception ex)
