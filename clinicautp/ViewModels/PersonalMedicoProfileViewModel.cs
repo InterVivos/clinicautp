@@ -56,7 +56,7 @@ namespace clinicautp.ViewModels
                 Telefono = PersonalMedico.Telefono;
                 Correo = PersonalMedico.Correo;
                 Cargo = PersonalMedico.Cargo;
-                Especialidad = PersonalMedico.Especialidad;
+                Especialidad = PersonalMedico.Especialidad.Nombre;
             }
             else
             {
@@ -88,7 +88,7 @@ namespace clinicautp.ViewModels
             PersonalMedico.Telefono = Telefono;
             PersonalMedico.Correo = Correo;
             PersonalMedico.Cargo = Cargo;
-            PersonalMedico.Especialidad = Especialidad;
+            //PersonalMedico.Especialidad = Especialidad;
 
             // Guardar los cambios en la base de datos
             _dbContext.PersonalMedicos.Update(PersonalMedico);

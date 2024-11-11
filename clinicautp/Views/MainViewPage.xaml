@@ -9,17 +9,17 @@
     <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="15" Margin="15">
 
         <!-- Botones alineados en la misma fila -->
-        <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="10">
             <!-- Botón para ir a la página de perfil -->
             <Button Grid.Column="0" Text="Perfil" Command="{Binding NavegarPerfilCommand}" BackgroundColor="#FF5722" TextColor="White" />
 
-            <!-- Botón para agregar un nuevo historial médico -->
-            <Button Grid.Column="1" Text="Agregar HM" Command="{Binding CrearHistorialCommand}" BackgroundColor="#6A1B9A" TextColor="White" />
+            <!-- Botón para agregar un nuevo historial médico ->
+            <Button Grid.Column="1" Text="Agregar HM" Command="{Binding CrearHistorialCommand}" BackgroundColor="#6A1B9A" TextColor="White" /> -->
 
-            <Button Grid.Column="2" Text="Citas" Command="{Binding IrCitaCommand}" BackgroundColor="#D32F2F" TextColor="White" />
+            <Button Grid.Column="1" Text="Citas" Command="{Binding IrCitaCommand}" BackgroundColor="#D32F2F" TextColor="White" />
 
             <!-- Botón para logout -->
-            <Button Grid.Column="3" Text="Logout" Command="{Binding LogOutCommand}" BackgroundColor="#D32F2F" TextColor="White" />
+            <Button Grid.Column="2" Text="Logout" Command="{Binding LogOutCommand}" BackgroundColor="#D32F2F" TextColor="White" />
         </Grid>
 
         <!-- Etiqueta para el título de la lista de historiales médicos -->

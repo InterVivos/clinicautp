@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using clinicautp.DataAccess;
 using clinicautp.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Collections.ObjectModel;
 
 namespace clinicautp.ViewModels
 {
@@ -23,8 +24,13 @@ namespace clinicautp.ViewModels
         [ObservableProperty]
         private string cargo;
 
+        /*[ObservableProperty]
+        private Especialidad especialidad;*/
         [ObservableProperty]
-        private string especialidad;
+        ObservableCollection<string> listaEspecialidades = new ObservableCollection<string>();
+
+        [ObservableProperty]
+        private string especialidadSeleccionada;
 
         [ObservableProperty]
         private string nombre;
@@ -62,7 +68,7 @@ namespace clinicautp.ViewModels
                     Cedula = Cedula,
                     Contrasena = Contrasena,
                     Cargo = Cargo,
-                    Especialidad = Especialidad,
+                    EspecialidadNombre = EspecialidadSeleccionada,
                     Nombre = Nombre,
                     Apellido = Apellido,
                     Correo = Correo,
@@ -90,11 +96,17 @@ namespace clinicautp.ViewModels
             Cedula = string.Empty;
             Contrasena = string.Empty;
             Cargo = string.Empty;
-            Especialidad = string.Empty;
+            //Especialidad = string.Empty;
+            EspecialidadSeleccionada = null;
             Nombre = string.Empty;
             Apellido = string.Empty;
             Correo = string.Empty;
             Telefono = string.Empty;
+        }
+
+        public async Task LoadEspecialidades()
+        {
+            await Especialidad.LoadEspecialidades(_dbContext, listaEspecialidades);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace clinicautp.Models
 {
@@ -12,7 +13,12 @@ namespace clinicautp.Models
 
         public string Cargo { get; set; }
 
-        public string? Especialidad { get; set; }
+        //public string? Especialidad { get; set; }
+
+        [Required]
+        public string EspecialidadNombre { get; set; }
+        [ForeignKey(nameof(EspecialidadNombre))]
+        public Especialidad Especialidad { get; set; }
 
         public string? Nombre { get; set; }
 

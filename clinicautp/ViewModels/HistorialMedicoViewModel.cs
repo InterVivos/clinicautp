@@ -57,12 +57,16 @@ namespace clinicautp.ViewModels
         {
             try
             {
+                var citaSel = await _dbContext.Citas
+                        .FirstOrDefaultAsync(c => c.Id == AppState.Instance.IdCitaSeleccionada);
+
                 if (idHistorialMedico == 0)
                 {
                     // Crear un nuevo historial médico
                     var nuevoHistorialMedico = new HistorialMedico
                     {
-                        CedulaPaciente = AppState.Instance.CedulaPaciente, 
+                        //CedulaPaciente = AppState.Instance.CedulaPaciente, 
+                        CedulaPaciente = citaSel.CedulaPaciente,
                         Fecha = fecha,
                         Especialidad = especialidad,
                         Detalles = detalles
@@ -82,6 +86,9 @@ namespace clinicautp.ViewModels
                         encontrado.Detalles = Detalles;
                     }
                 }
+
+                citaSel.Estado = "Completada";
+                AppState.Instance.IdCitaSeleccionada = 0;
 
                 await _dbContext.SaveChangesAsync();
 

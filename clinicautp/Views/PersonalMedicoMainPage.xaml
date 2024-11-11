@@ -2,16 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="clinicautp.Views.PersonalMedicoMainPage"
+             xmlns:model="clr-namespace:clinicautp.DTOs"
              Title="Personal Médico">
 
-    <StackLayout Padding="10">
+    <StackLayout Padding="10" Spacing="1">
 
         <Label Text="Lista de Personal Médico"
                FontSize="24"
                HorizontalOptions="Center"
                Margin="0,20,0,10"/>
 
-        <ListView ItemsSource="{Binding ListaPersonalMedico}"
+        <!-- <ListView ItemsSource="{Binding ListaPersonalMedico}"
                   HasUnevenRows="True"
                   SelectionMode="Single"
                   SelectedItem="{Binding SelectedPersonalMedico, Mode=TwoWay}">
@@ -26,7 +27,61 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </ListView> -->
+
+        <ScrollView Grid.Row="2" VerticalOptions="FillAndExpand">
+            <!-- Vista de colección para mostrar las citas -->
+            <CollectionView ItemsSource="{Binding ListaCitas}" SelectionChanged="medicoCitasSelectionChanged" SelectionMode="Single">
+
+                <!-- Definición del diseño de los elementos de la colección -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
+                <!-- Plantilla de datos para cada ítem en la colección -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:CitaDTO">
+                        <Border Padding="10,5" HorizontalOptions="FillAndExpand" Stroke="#6A1B9A" BackgroundColor="#E0E0E0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="5" />
+                            </Border.StrokeShape>
+
+                            <!-- Diseño de los detalles de la cita usando Grid -->
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+
+                                <!-- Etiquetas y campos de datos para la cita -->
+                                <Label Grid.Row="0" Grid.Column="0" Text="Fecha" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Text="{Binding FechaCita, StringFormat='{0:MM/dd/yyyy}'}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="Hora" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Text="{Binding HoraCita, StringFormat='{0:hh\\:mm}'}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="2" Grid.Column="0" Text="Especialidad" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Text="{Binding Especialidad}" TextColor="#AB47BC" />
+
+                                <Label Grid.Row="3" Grid.Column="0" Text="Observaciones" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="End" Text="{Binding Observaciones}" TextColor="#AB47BC" />
+
+                                <!-- Etiqueta para editar la cita ->
+                                <Label Grid.Row="4" Grid.Column="0" Padding="0,15,10,5" Text="Editar" TextColor="Blue">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.EditarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                    </Label.GestureRecognizers>
+                                </Label> -->
+
+                                <!-- Etiqueta para eliminar la cita ->
+                                <Label Grid.Row="4" Grid.Column="1" Padding="10,15,0,5" Text="Eliminar" TextColor="Red" HorizontalOptions="End">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.EliminarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                    </Label.GestureRecognizers>
+                                </Label> -->
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
 
         <!-- <Button Text="Ir al Perfil"
                 Command="{Binding NavegarPerfilCommand}"
@@ -35,16 +90,17 @@
 
         <!-- Botón para navegar a la página de Horario Médico -->
         <Button Text="Agregar Horario Médico"
-                Command="{Binding NavegarHorarioMedicoCommand}" />
+                Command="{Binding NavegarHorarioMedicoCommand}"
+                VerticalOptions="End"/>
 
         <Button Text="Ir a crear Pdf"
                 Command="{Binding NavegarCrearPDFCommand}"
-                />
+                VerticalOptions="End"/>
 
         <Button Text="Cerrar Sesión"
                 Command="{Binding LogOutCommand}"
                 BackgroundColor="Red"
                 TextColor="White"
-                VerticalOptions="EndAndExpand"/>
+                VerticalOptions="End"/>
     </StackLayout>
 </ContentPage>

@@ -20,6 +20,9 @@ namespace clinicautp.ViewModels
         [ObservableProperty]
         private ObservableCollection<PersonalMedicoDTO> listaPersonalMedico = new ObservableCollection<PersonalMedicoDTO>();
 
+        [ObservableProperty]
+        private ObservableCollection<CitaDTO> listaCitas = new ObservableCollection<CitaDTO>();
+
         // Constructor que inicializa el ViewModel con el contexto de base de datos
         public PersonalMedicoMainViewModel(ClinicaDBContext context)
         {
@@ -27,6 +30,38 @@ namespace clinicautp.ViewModels
 
             // Ejecuta el método Obtener en el hilo principal de la interfaz de usuario
             //MainThread.BeginInvokeOnMainThread(new Action(async () => await ObtenerPersonalMedico()));
+
+            MainThread.BeginInvokeOnMainThread(new Action(async () => await ObtenerCitas()));
+        }
+
+        public async Task ObtenerCitas()
+        {
+            ListaCitas.Clear();
+
+
+
+            var lista = await _dbContext.Citas
+                .Where(c => c.Especialidad == _dbContext.PersonalMedicos.Find(AppState.Instance.CedulaPersonalMedico).EspecialidadNombre)
+                .Where(c => c.Estado != "Completada")
+                .ToListAsync();
+
+            if (lista.Any())
+            {
+                foreach (var item in lista)
+                {
+                    ListaCitas.Add(new CitaDTO
+                    {
+                        Id = item.Id,
+                        FechaCita = item.FechaCita,
+                        Especialidad = item.Especialidad,
+                        FechaCreacion = item.FechaCreacion,
+                        CedulaPaciente = item.CedulaPaciente,
+                        Estado = item.Estado,
+                        Observaciones = item.Observaciones,
+                        HoraCita = item.HoraCita
+                    });
+                }
+            }
         }
 
 
@@ -71,6 +106,5 @@ namespace clinicautp.ViewModels
         {
             await Shell.Current.GoToAsync(nameof(ReferenciaEspecialidadPage));
         }
-
     }
 }

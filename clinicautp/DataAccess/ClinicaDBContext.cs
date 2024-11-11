@@ -1,4 +1,5 @@
-﻿using clinicautp.Models;
+﻿using clinicautp.DTOs;
+using clinicautp.Models;
 using clinicautp.Utilities;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,8 @@ namespace clinicautp.DataAccess
         public DbSet<HorarioMedico> HorarioMedico { get; set; }
 
         public DbSet<Referencias> Referencias { get; set; }
+
+        public DbSet<Especialidad> Especialidades { get; set; }
 
         // Método que configura las opciones de la base de datos
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -56,7 +59,38 @@ namespace clinicautp.DataAccess
             // Configuración de Medicamento
             modelBuilder.Entity<Medicamento>()
                 .HasKey(m => m.CodMedicamento); // Configura CodMedicamento como la clave primaria
+            
+            modelBuilder.Entity<Especialidad>()
+                .HasMany(e => e.cedulaMedico)
+                .WithOne(e => e.Especialidad)
+                .HasForeignKey(e => e.EspecialidadNombre)
+                .IsRequired();
+            
+            modelBuilder.Entity<Especialidad>().HasData(
+                new Especialidad("Consulta General"),
+                new Especialidad("Urgencias"),
+                new Especialidad("Ginecología"),
+                new Especialidad("Dermatología"),
+                new Especialidad("Neurología"),
+                new Especialidad("Oftalmología"),
+                new Especialidad("Ortopedia")
+            );
 
+            modelBuilder.Entity<PersonalMedico>().HasData(
+                new PersonalMedico{Cedula="m", Nombre="m", Apellido="m", Cargo="m", Contrasena="m", Correo="m", EspecialidadNombre="Ortopedia", Telefono="m"}
+            );
+
+            modelBuilder.Entity<Paciente>().HasData(
+                new Paciente{Cedula="e", Nombre="m", Apellido="m", Contrasena="e", Correo="m", FechaNacimiento=DateTime.Now, Sangre="B+"}
+            );
+
+            modelBuilder.Entity<Cita>().HasData(
+                new Cita{CedulaPaciente="e", Especialidad="Ortopedia", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=1},
+                new Cita{CedulaPaciente="e", Especialidad="Ortopedia", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=2},
+                new Cita{CedulaPaciente="e", Especialidad="Ortopedia", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=3},
+                new Cita{CedulaPaciente="e", Especialidad="Ortopedia", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=4},
+                new Cita{CedulaPaciente="e", Especialidad="Ginecología", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=5}
+            );
         }
     }
 }

@@ -29,9 +29,16 @@
             <Label Text="Cargo" TextColor="#6A1B9A" />
             <Entry Text="{Binding Cargo}" Placeholder="Ingrese el cargo" />
 
-            <!-- Especialidad -->
+            <!-- Especialidad ->
             <Label Text="Especialidad" TextColor="#6A1B9A" />
-            <Entry Text="{Binding Especialidad}" Placeholder="Ingrese la especialidad" />
+            <Entry Text="{Binding Especialidad}" Placeholder="Ingrese la especialidad" /> -->
+
+            <Label Text="Especialidad" TextColor="#6A1B9A" />
+            <Picker Title="Seleccione Especialidad"
+                    ItemsSource="{Binding ListaEspecialidades}"
+                    SelectedItem="{Binding EspecialidadSeleccionada, Mode=TwoWay}" />
+            <Label Text="{Binding EspecialidadSeleccionada}"/>
+
 
             <!-- Nombre -->
             <Label Text="Nombre" TextColor="#6A1B9A" />

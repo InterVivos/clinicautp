@@ -81,7 +81,7 @@ public class PdfGenerator
         }
         else
         {
-            await Toast.Make($"No se pudo guardar el PDF: {fileSaverResult.Exception.Message}").Show(cancellationToken);
+            await Toast.Make($"No se guardó el PDF: {fileSaverResult.Exception.Message}").Show(cancellationToken);
         }
     }
 }

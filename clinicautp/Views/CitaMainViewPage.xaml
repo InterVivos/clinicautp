@@ -39,7 +39,7 @@
                             </Border.StrokeShape>
 
                             <!-- Diseño de los detalles de la cita usando Grid -->
-                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
 
                                 <!-- Etiquetas y campos de datos para la cita -->
                                 <Label Grid.Row="0" Grid.Column="0" Text="Fecha" FontAttributes="Bold" TextColor="#6A1B9A" />
@@ -54,15 +54,18 @@
                                 <Label Grid.Row="3" Grid.Column="0" Text="Observaciones" FontAttributes="Bold" TextColor="#6A1B9A" />
                                 <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="End" Text="{Binding Observaciones}" TextColor="#AB47BC" />
 
+                                <Label Grid.Row="4" Grid.Column="0" Text="Estado" FontAttributes="Bold" TextColor="#6A1B9A" />
+                                <Label Grid.Row="4" Grid.Column="1" HorizontalOptions="End" Text="{Binding Estado}" TextColor="#AB47BC" />
+
                                 <!-- Etiqueta para editar la cita -->
-                                <Label Grid.Row="4" Grid.Column="0" Padding="0,15,10,5" Text="Editar" TextColor="Blue">
+                                <Label Grid.Row="5" Grid.Column="0" Padding="0,15,10,5" Text="Editar" TextColor="Blue">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.EditarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
                                     </Label.GestureRecognizers>
                                 </Label>
 
                                 <!-- Etiqueta para eliminar la cita -->
-                                <Label Grid.Row="4" Grid.Column="1" Padding="10,15,0,5" Text="Eliminar" TextColor="Red" HorizontalOptions="End">
+                                <Label Grid.Row="5" Grid.Column="1" Padding="10,15,0,5" Text="Eliminar" TextColor="Red" HorizontalOptions="End">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.EliminarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
                                     </Label.GestureRecognizers>

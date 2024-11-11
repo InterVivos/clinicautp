@@ -11,7 +11,7 @@ namespace clinicautp.Models
         [Required]
         public string CedulaPaciente { get; set; }
 
-        public DateTime Fecha { get; set; }
+        public DateTime Fecha { get; set; } = DateTime.Now;
 
         public string? Especialidad { get; set; }
 

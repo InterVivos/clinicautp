@@ -25,5 +25,7 @@ namespace clinicautp.Utilities
         {
             return usuario == AdminUsuario && contrasena == AdminContrasena;
         }
+
+        public int IdCitaSeleccionada { get; set; }
     }
 }

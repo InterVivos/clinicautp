@@ -9,4 +9,11 @@ public partial class AdmRegisterPersonalMedicoPage : ContentPage
 		InitializeComponent();
         BindingContext = viewModel;
     }
+
+	protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        // Aqu� puedes agregar l�gica adicional si es necesario
+        await ((AdminRegisterPersonalMedicoViewModel)BindingContext).LoadEspecialidades();
+    }
 }
