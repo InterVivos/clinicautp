@@ -23,7 +23,7 @@ namespace clinicautp.ViewModels
         [ObservableProperty]
         private string detalles;
 
-        private int idHistorialMedico;
+        public int idHistorialMedico {get; private set;}
 
         public HistorialMedicoViewModel(ClinicaDBContext context)
         {
@@ -44,9 +44,9 @@ namespace clinicautp.ViewModels
                     if (encontrado != null)
                     {
 
-                        fecha = encontrado.Fecha;
-                        especialidad = encontrado.Especialidad;
-                        detalles = encontrado.Detalles;
+                        Fecha = encontrado.Fecha;
+                        Especialidad = encontrado.Especialidad;
+                        Detalles = encontrado.Detalles;
                     }
                 }
             }
