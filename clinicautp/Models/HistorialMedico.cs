@@ -20,5 +20,7 @@ namespace clinicautp.Models
 
         [ForeignKey(nameof(CedulaPaciente))]
         public Paciente Paciente { get; set; }
+
+        public List<Medicamento> MedicamentosAdministrados { get; } = [];
     }
 }

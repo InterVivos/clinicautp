@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-
 using clinicautp.DataAccess;
 using clinicautp.DTOs;
 using Microsoft.EntityFrameworkCore;
 using clinicautp.Models;
 using clinicautp.Utilities;
+using System.Collections.ObjectModel;
+using clinicautp.Views;
 
 namespace clinicautp.ViewModels
 {
@@ -24,6 +24,9 @@ namespace clinicautp.ViewModels
         private string detalles;
 
         public int idHistorialMedico {get; private set;}
+
+        [ObservableProperty]
+        private ObservableCollection<MedicamentoAdministradoDTO> listaMedicamentos = new ObservableCollection<MedicamentoAdministradoDTO>();
 
         public HistorialMedicoViewModel(ClinicaDBContext context)
         {
@@ -43,10 +46,10 @@ namespace clinicautp.ViewModels
 
                     if (encontrado != null)
                     {
-
                         Fecha = encontrado.Fecha;
                         Especialidad = encontrado.Especialidad;
                         Detalles = encontrado.Detalles;
+                        
                     }
                 }
             }
@@ -73,6 +76,22 @@ namespace clinicautp.ViewModels
                     };
 
                     _dbContext.HistorialMedicos.Add(nuevoHistorialMedico);
+
+                    foreach(var item in ListaMedicamentos)
+                    {
+                        if(item.Cantidad >= 1)
+                        {
+                            await _dbContext.SaveChangesAsync();
+                            _dbContext.MedicamentosAdministrados.Add(new MedicamentoAdministrado
+                            {
+                                IdHistorial = nuevoHistorialMedico.IdHistorial,
+                                CodMedicamento = item.Medicamento.CodMedicamento,
+                                Cantidad = item.Cantidad
+                            });
+                            var medicamento = await _dbContext.Medicamentos.FirstOrDefaultAsync(e => e.CodMedicamento == item.Medicamento.CodMedicamento);
+                            if (medicamento != null) medicamento.CantidadDisponible -= item.Cantidad;
+                        }
+                    }
                 }
                 else
                 {
@@ -103,5 +122,50 @@ namespace clinicautp.ViewModels
             }
         }
 
+        [RelayCommand]
+        private async Task AdministrarMedicamentos()
+        {
+            if(!ListaMedicamentos.Any())
+            {
+                if(idHistorialMedico == 0)
+                {
+                    var lista = await _dbContext.Medicamentos
+                        .Where(m => m.CantidadDisponible >= 1)
+                        .ToListAsync();
+
+                    if (lista.Count > 0)
+                    {
+                        foreach (var item in lista)
+                        {
+                            ListaMedicamentos.Add(new MedicamentoAdministradoDTO
+                            {
+                                IdHistorial = 0,
+                                Medicamento = item
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    var lista = await _dbContext.MedicamentosAdministrados
+                        .Where(h => h.IdHistorial == idHistorialMedico)
+                        .ToListAsync();
+                    
+                    if (lista.Count > 0)
+                    {
+                        foreach (var item in lista)
+                        {
+                            ListaMedicamentos.Add(new MedicamentoAdministradoDTO
+                            {
+                                IdHistorial = idHistorialMedico,
+                                Medicamento = item.Medicamento,
+                                Cantidad = item.Cantidad
+                            });
+                        }
+                    }
+                }
+            }
+            await Shell.Current.Navigation.PushAsync(new AdministrarMedicamentos(this));
+        }
     }
 }

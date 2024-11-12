@@ -19,6 +19,8 @@ namespace clinicautp.DataAccess
 
         public DbSet<Especialidad> Especialidades { get; set; }
 
+        public DbSet<MedicamentoAdministrado> MedicamentosAdministrados { get; set; }
+
         // Método que configura las opciones de la base de datos
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -66,6 +68,11 @@ namespace clinicautp.DataAccess
                 .HasForeignKey(e => e.EspecialidadNombre)
                 .IsRequired();
             
+            modelBuilder.Entity<Medicamento>()
+                .HasMany(e => e.HistorialesMedicos)
+                .WithMany(e => e.MedicamentosAdministrados)
+                .UsingEntity("MedicamentoAdministrado");
+
             modelBuilder.Entity<Especialidad>().HasData(
                 new Especialidad("Consulta General"),
                 new Especialidad("Urgencias"),
@@ -90,6 +97,11 @@ namespace clinicautp.DataAccess
                 new Cita{CedulaPaciente="e", Especialidad="Ortopedia", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=3},
                 new Cita{CedulaPaciente="e", Especialidad="Ortopedia", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=4},
                 new Cita{CedulaPaciente="e", Especialidad="Ginecología", Estado="Prog", FechaCita= DateTime.Now, HoraCita=TimeSpan.Zero, FechaCreacion=DateTime.Now, Observaciones="m", Id=5}
+            );
+
+            modelBuilder.Entity<Medicamento>().HasData(
+                new Medicamento{CodMedicamento="001", Nombre="Acetaminofen", Dosis="500ml", CantidadDisponible=20, CantidadMinima=10, FechaVencimiento=DateTime.Now, Indicaciones="Etiqueta"},
+                new Medicamento{CodMedicamento="002", Nombre="Aspirina", Dosis="500ml", CantidadDisponible=20, CantidadMinima=10, FechaVencimiento=DateTime.Now, Indicaciones="Etiqueta"}
             );
         }
     }

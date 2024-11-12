@@ -18,6 +18,8 @@
         <Label Text="Detalles" TextColor="#6A1B9A"></Label>
         <Entry Text="{Binding Detalles}" Margin="0,0,0,10"></Entry>
 
+        <Button Text="Medicamentos" Command="{Binding AdministrarMedicamentosCommand}" BackgroundColor="Green" />
+
         <!-- Botón para guardar el historial médico, enlazado al comando GuardarCommand en el ViewModel -->
         <Button Text="Guardar" Command="{Binding GuardarCommand}" BackgroundColor="Green" />
 

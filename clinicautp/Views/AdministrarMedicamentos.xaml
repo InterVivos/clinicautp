@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="clinicautp.Views.AdministrarMedicamentos"
+             xmlns:model="clr-namespace:clinicautp.Models"
+             Title="Administrar Medicamento">
+
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="*" Padding="10">
+        <CollectionView Grid.Row="0" Grid.Column="0" ItemsSource="{Binding ListaMedicamentos}" SelectionMode="Multiple">
+
+            <!-- Definición del diseño de los elementos de la colección -->
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <!-- Plantilla de datos para cada ítem en la colección -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:MedicamentoAdministrado">
+                    <Border Padding="10,5" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Stroke="#6A1B9A" BackgroundColor="#E0E0E0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+
+                        <!-- Diseño de los detalles de la cita usando Grid -->
+                        
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,Auto,*,100">
+
+                            <!-- Etiquetas y campos de datos para la cita -->
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Medicamento.CodMedicamento}" TextColor="#AB47BC" Margin="0,0,5,0"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Medicamento.Nombre}" TextColor="#AB47BC" />
+                            <Label Grid.Row="0" Grid.Column="2" x:Name="_cantidadMedicamento" Text="{Binding Cantidad, Mode=TwoWay}" HorizontalOptions="End"/>  
+                            <Stepper Grid.Row="0" Grid.Column="3" HorizontalOptions="End" Maximum="{Binding Medicamento.CantidadDisponible}" Minimum="0" Value="{Binding Cantidad, Mode=TwoWay}" Increment="1"/>
+
+                           <!--  Label Grid.Row="1" Grid.Column="0" Text="Hora" FontAttributes="Bold" TextColor="#6A1B9A" />
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Text="{Binding HoraCita, StringFormat='{0:hh\\:mm}'}" TextColor="#AB47BC" />
+
+                            <Label Grid.Row="2" Grid.Column="0" Text="Especialidad" FontAttributes="Bold" TextColor="#6A1B9A" />
+                            <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Text="{Binding Especialidad}" TextColor="#AB47BC" />
+
+                            <Label Grid.Row="3" Grid.Column="0" Text="Observaciones" FontAttributes="Bold" TextColor="#6A1B9A" />
+                            <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="End" Text="{Binding Observaciones}" TextColor="#AB47BC" /> -->
+
+                            <!-- Etiqueta para editar la cita ->
+                            <Label Grid.Row="4" Grid.Column="0" Padding="0,15,10,5" Text="Editar" TextColor="Blue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.EditarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                </Label.GestureRecognizers>
+                            </Label> -->
+
+                            <!-- Etiqueta para eliminar la cita ->
+                            <Label Grid.Row="4" Grid.Column="1" Padding="10,15,0,5" Text="Eliminar" TextColor="Red" HorizontalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.EliminarCitaCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" />
+                                </Label.GestureRecognizers>
+                            </Label> -->
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="1" Grid.Column="0" Text="Hecho"
+                TextColor="White"
+                VerticalOptions="End"/>
+    </Grid>
+</ContentPage>

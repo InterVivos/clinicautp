@@ -27,5 +27,7 @@ namespace clinicautp.Models
 
         // Propiedad para marcar si el medicamento está en estado crítico o escasez
         public bool EnEscasez => CantidadDisponible <= CantidadMinima;
+
+        public List<HistorialMedico> HistorialesMedicos { get; } = [];
     }
 }
