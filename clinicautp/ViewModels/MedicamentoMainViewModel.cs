@@ -56,7 +56,7 @@ namespace clinicautp.ViewModels
             if (medicamento != null)
             {
                 //Navegar a la página de edición o actualización del medicamento
-                var viewModel = new MedicamentoActualizarViewModel(_dbContext);
+                var viewModel = new MedicamentoActualizarViewModel(_dbContext, codMedicamento);
                 var page = new MedicamentoActualizarPage(viewModel);
                 await Shell.Current.Navigation.PushAsync(page);
             }

@@ -9,13 +9,13 @@ namespace clinicautp.Views
             InitializeComponent();
             BindingContext = viewModel;
 
-            // Llamar al método LoadMedicamentoAsync después de establecer el BindingContext
+            // Llamar al mï¿½todo LoadMedicamentoAsync despuï¿½s de establecer el BindingContext
             _ = LoadMedicamentoDataAsync(viewModel);
         }
 
         private async Task LoadMedicamentoDataAsync(MedicamentoActualizarViewModel viewModel)
         {
-            // Aquí puedes pasar el código del medicamento que quieres cargar
+            // Aquï¿½ puedes pasar el cï¿½digo del medicamento que quieres cargar
             await viewModel.LoadMedicamentoAsync(viewModel.CodMedicamento);
         }
     }

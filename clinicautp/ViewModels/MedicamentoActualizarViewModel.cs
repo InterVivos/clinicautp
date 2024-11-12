@@ -22,14 +22,16 @@ namespace clinicautp.ViewModels
         [ObservableProperty] private int cantidadMinima;
 
         // Constructor con la base de datos
-        public MedicamentoActualizarViewModel(ClinicaDBContext dbContext)
+        public MedicamentoActualizarViewModel(ClinicaDBContext dbContext, string codMedicamento)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            this.codMedicamento = codMedicamento;
         }
 
         // Método para cargar los datos del medicamento
         public async Task LoadMedicamentoAsync(string codigo)
         {
+            codigo = codMedicamento;
             try
             {
                 // Buscar el medicamento por su código
