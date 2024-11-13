@@ -34,6 +34,9 @@ namespace clinicautp.ViewModels
         [ObservableProperty]
         private string correo;
 
+        [ObservableProperty]
+        private bool esDonador;
+
         public AdminRegisterPacienteViewModel(ClinicaDBContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -71,7 +74,8 @@ namespace clinicautp.ViewModels
                 Apellido = Apellido,
                 FechaNacimiento = FechaNacimiento,
                 Sangre = Sangre,
-                Correo = Correo
+                Correo = Correo,
+                EsDonador = EsDonador
             };
 
             await _dbContext.Pacientes.AddAsync(nuevoPaciente);
@@ -93,6 +97,7 @@ namespace clinicautp.ViewModels
             FechaNacimiento = DateTime.MinValue;
             Sangre = string.Empty;
             Correo = string.Empty;
+            EsDonador = false;
         }
     }
 }

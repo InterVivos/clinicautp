@@ -18,9 +18,15 @@
         <Label Text="Detalles" TextColor="#6A1B9A"></Label>
         <Entry Text="{Binding Detalles}" Margin="0,0,0,10"></Entry>
 
+        <HorizontalStackLayout IsVisible="{Binding VistaEsMedico}">
+            <CheckBox IsChecked="{Binding GenerarCertificado}"></CheckBox>
+            <Label Text="Generar certificado de buena salud" TextColor="#6A1B9A" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
         <Button Text="Medicamentos" Command="{Binding AdministrarMedicamentosCommand}" BackgroundColor="Green" />
 
         <!-- Botón para guardar el historial médico, enlazado al comando GuardarCommand en el ViewModel -->
+        <Button Text="Descargar Certificado" Command="{Binding DescargarCertificadoCommand}" IsVisible="{Binding CertificadoDisponible}"/>
         <Button Text="Guardar" Command="{Binding GuardarCommand}" BackgroundColor="Green" />
 
     </VerticalStackLayout>

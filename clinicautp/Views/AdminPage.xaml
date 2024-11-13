@@ -26,7 +26,8 @@
             <Button Text="Personal Médico" 
                     Command="{Binding NavegarPersonalMedicoCommand}" />
             <Button Text="Medicamentos" 
-        Command="{Binding NavegarMedicamentosCommand}" />
+                    Command="{Binding NavegarMedicamentosCommand}" />
+            <Button Text="Informes"/>
 
         </StackLayout>
 

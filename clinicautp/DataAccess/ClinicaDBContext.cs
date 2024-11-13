@@ -80,15 +80,16 @@ namespace clinicautp.DataAccess
                 new Especialidad("Dermatología"),
                 new Especialidad("Neurología"),
                 new Especialidad("Oftalmología"),
-                new Especialidad("Ortopedia")
+                new Especialidad("Ortopedia"),
+                new Especialidad("Donación de sangre")
             );
 
             modelBuilder.Entity<PersonalMedico>().HasData(
-                new PersonalMedico{Cedula="m", Nombre="m", Apellido="m", Cargo="m", Contrasena="m", Correo="m", EspecialidadNombre="Ortopedia", Telefono="m"}
+                new PersonalMedico{Cedula="m", Nombre="Luis", Apellido="Vargas", Cargo="m", Contrasena="m", Correo="m", EspecialidadNombre="Ortopedia", Telefono="m"}
             );
 
             modelBuilder.Entity<Paciente>().HasData(
-                new Paciente{Cedula="e", Nombre="m", Apellido="m", Contrasena="e", Correo="m", FechaNacimiento=DateTime.Now, Sangre="B+"}
+                new Paciente{Cedula="e", Nombre="Juan", Apellido="Perez", Contrasena="e", Correo="m", FechaNacimiento=DateTime.Now, Sangre="B+"}
             );
 
             modelBuilder.Entity<Cita>().HasData(

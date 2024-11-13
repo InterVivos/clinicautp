@@ -44,6 +44,11 @@
             <Label Text="Fecha de Nacimiento" TextColor="#6A1B9A" />
             <DatePicker Date="{Binding FechaNacimiento}" />
 
+            <HorizontalStackLayout>
+                <CheckBox IsChecked="{Binding EsDonador}"></CheckBox>
+                <Label Text="Donador de sangre" TextColor="#6A1B9A" HorizontalOptions="Fill" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
             <!-- Botón para guardar los datos -->
             <Button Text="Guardar" 
                     Command="{Binding ActualizarDatosCommand}" 

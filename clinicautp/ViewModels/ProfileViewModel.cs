@@ -37,6 +37,9 @@ namespace clinicautp.ViewModels
         [ObservableProperty]
         private string _correo;
 
+        [ObservableProperty]
+        private bool _esDonador;
+
         public ProfileViewModel(ClinicaDBContext dbContext)
         {
             _dbContext = dbContext;
@@ -58,6 +61,7 @@ namespace clinicautp.ViewModels
                 Correo = Paciente.Correo;
                 Sangre = Paciente.Sangre;
                 FechaNacimiento = Paciente.FechaNacimiento;
+                EsDonador = Paciente.EsDonador;
             }
             else
             {
@@ -92,6 +96,7 @@ namespace clinicautp.ViewModels
             Paciente.Sangre = Sangre;
             Paciente.FechaNacimiento = FechaNacimiento;
             Paciente.Correo = Correo;
+            Paciente.EsDonador = EsDonador;
 
             // Guardar los cambios en la base de datos
             _dbContext.Pacientes.Update(Paciente);

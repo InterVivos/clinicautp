@@ -25,5 +25,7 @@ namespace clinicautp.Models
         public ICollection<HistorialMedico> HistoriasMedicas { get; set; } = new List<HistorialMedico>();
 
         public ICollection<Cita> Citas { get; set; } = new List<Cita>();
+
+        public bool EsDonador { get; set;}
     }
 }

@@ -39,7 +39,7 @@ namespace clinicautp.ViewModels
         {
             _dbContext = context;
 
-            fechaCita = DateTime.Now;
+            FechaCita = DateTime.Now;
 
             HoraCita = DateTime.Now.TimeOfDay;
 
@@ -70,11 +70,11 @@ namespace clinicautp.ViewModels
                     if (citaEncontrada != null)
                     {
                         // Asignar los valores de la cita a las propiedades
-                        fechaCita = citaEncontrada.FechaCita;  // Asignar la fecha
-                        horaCita = citaEncontrada.HoraCita;  // Asignar la hora
-                        especialidadSeleccionada = citaEncontrada.Especialidad;
-                        estado = citaEncontrada.Estado;
-                        observaciones = citaEncontrada.Observaciones;
+                        FechaCita = citaEncontrada.FechaCita;  // Asignar la fecha
+                        HoraCita = citaEncontrada.HoraCita;  // Asignar la hora
+                        EspecialidadSeleccionada = citaEncontrada.Especialidad;
+                        Estado = citaEncontrada.Estado;
+                        Observaciones = citaEncontrada.Observaciones;
                     }
                 }
             }
@@ -91,11 +91,11 @@ namespace clinicautp.ViewModels
                     var nuevaCita = new Cita
                     {
                         CedulaPaciente = AppState.Instance.CedulaPaciente,  // Asignar la cédula del paciente
-                        FechaCita = fechaCita,  // Asignar la fecha
-                        HoraCita = horaCita,  // Asignar la hora
-                        Especialidad = especialidadSeleccionada ?? throw new ArgumentNullException(nameof(especialidadSeleccionada), "La especialidad es obligatoria."),  // Guardar la especialidad seleccionada
-                        Estado = estado ?? "Programada",  // Estado predeterminado como "Programada"
-                        Observaciones = observaciones,
+                        FechaCita = FechaCita,  // Asignar la fecha
+                        HoraCita = HoraCita,  // Asignar la hora
+                        Especialidad = EspecialidadSeleccionada ?? throw new ArgumentNullException(nameof(especialidadSeleccionada), "La especialidad es obligatoria."),  // Guardar la especialidad seleccionada
+                        Estado = Estado ?? "Programada",  // Estado predeterminado como "Programada"
+                        Observaciones = Observaciones,
                         FechaCreacion = DateTime.Now  // Establecer la fecha de creación
                     };
 
@@ -109,11 +109,11 @@ namespace clinicautp.ViewModels
 
                     if (citaEncontrada != null)
                     {
-                        citaEncontrada.FechaCita = fechaCita;  // Actualizar fecha
-                        citaEncontrada.HoraCita = horaCita;  // Actualizar hora
-                        citaEncontrada.Especialidad = especialidadSeleccionada ?? throw new ArgumentNullException(nameof(especialidadSeleccionada), "La especialidad es obligatoria.");  // Actualizar especialidad seleccionada
-                        citaEncontrada.Estado = estado;
-                        citaEncontrada.Observaciones = observaciones;
+                        citaEncontrada.FechaCita = FechaCita;  // Actualizar fecha
+                        citaEncontrada.HoraCita = HoraCita;  // Actualizar hora
+                        citaEncontrada.Especialidad = EspecialidadSeleccionada ?? throw new ArgumentNullException(nameof(especialidadSeleccionada), "La especialidad es obligatoria.");  // Actualizar especialidad seleccionada
+                        citaEncontrada.Estado = Estado;
+                        citaEncontrada.Observaciones = Observaciones;
                         // No se actualiza FechaCreacion porque no debe cambiar
                     }
                 }

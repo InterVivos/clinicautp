@@ -28,9 +28,21 @@ namespace clinicautp.ViewModels
         [ObservableProperty]
         private ObservableCollection<MedicamentoAdministradoDTO> listaMedicamentos = new ObservableCollection<MedicamentoAdministradoDTO>();
 
+        [ObservableProperty]
+        private bool generarCertificado;
+
+        [ObservableProperty]
+        private bool vistaEsMedico = true;
+
+        [ObservableProperty]
+        private bool certificadoDisponible = false;
+
+        private byte[] certificadoBuenaSalud { get; set;}
+
         public HistorialMedicoViewModel(ClinicaDBContext context)
         {
             _dbContext = context;
+            Fecha = DateTime.Now;
         }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -49,7 +61,9 @@ namespace clinicautp.ViewModels
                         Fecha = encontrado.Fecha;
                         Especialidad = encontrado.Especialidad;
                         Detalles = encontrado.Detalles;
-                        
+                        certificadoBuenaSalud = encontrado.CertificadoBuenaSalud;
+                        VistaEsMedico = false;
+                        if(certificadoBuenaSalud != null && certificadoBuenaSalud.Length > 0) CertificadoDisponible = true;
                     }
                 }
             }
@@ -63,6 +77,16 @@ namespace clinicautp.ViewModels
                 var citaSel = await _dbContext.Citas
                         .FirstOrDefaultAsync(c => c.Id == AppState.Instance.IdCitaSeleccionada);
 
+                if (GenerarCertificado)
+                {
+                    var paciente = await _dbContext.Pacientes
+                        .FirstOrDefaultAsync(p => p.Cedula == citaSel.CedulaPaciente);
+                    var medico = await _dbContext.PersonalMedicos
+                        .FirstOrDefaultAsync(pm => pm.Cedula == AppState.Instance.CedulaPersonalMedico);
+                    certificadoBuenaSalud = await PdfGenerator.CrearPDFCertificadoBuenaSalud(citaSel.CedulaPaciente, $"{paciente.Nombre} {paciente.Apellido}", $"{medico.Nombre} {medico.Apellido}", Especialidad);
+                }
+                else certificadoBuenaSalud = [];
+
                 if (idHistorialMedico == 0)
                 {
                     // Crear un nuevo historial médico
@@ -70,9 +94,10 @@ namespace clinicautp.ViewModels
                     {
                         //CedulaPaciente = AppState.Instance.CedulaPaciente, 
                         CedulaPaciente = citaSel.CedulaPaciente,
-                        Fecha = fecha,
-                        Especialidad = especialidad,
-                        Detalles = detalles
+                        Fecha = Fecha,
+                        Especialidad = Especialidad,
+                        Detalles = Detalles,
+                        CertificadoBuenaSalud = certificadoBuenaSalud
                     };
 
                     _dbContext.HistorialMedicos.Add(nuevoHistorialMedico);
@@ -166,6 +191,12 @@ namespace clinicautp.ViewModels
                 }
             }
             await Shell.Current.Navigation.PushAsync(new AdministrarMedicamentos(this));
+        }
+
+        [RelayCommand]
+        private async Task DescargarCertificado()
+        {
+            await PdfGenerator.DescargarPdfBd(certificadoBuenaSalud, "CertificadoBuenaSalud");
         }
     }
 }

@@ -44,6 +44,11 @@
             <Label Text="Correo" TextColor="#6A1B9A" />
             <Entry Text="{Binding Correo}" Placeholder="Ingrese el correo" Keyboard="Email" />
 
+            <HorizontalStackLayout>
+                <CheckBox IsChecked="{Binding EsDonador}"></CheckBox>
+                <Label Text="Donador de sangre" TextColor="#6A1B9A" HorizontalOptions="Fill" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
             <!-- Botón para agregar el paciente -->
             <Button Text="Agregar Paciente" 
                     Command="{Binding AgregarPacienteCommand}" 

@@ -28,6 +28,7 @@ public partial class PersonalMedicoMainPage : ContentPage
 	{
 		//await Shell.Current.GoToAsync(nameof(ReferenciaEspecialidadPage));
 		AppState.Instance.IdCitaSeleccionada = (e.CurrentSelection.FirstOrDefault() as CitaDTO).Id;
+		//((CollectionView)sender).SelectedItem = null;
 		var uri = $"{nameof(HistorialMedicoPage)}?id=0";
         await Shell.Current.GoToAsync(uri);
 	}
